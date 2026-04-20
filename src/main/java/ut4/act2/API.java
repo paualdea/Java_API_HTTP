@@ -36,7 +36,7 @@ public class API {
     public void ejecutarGet() {
         // Usamos una estructura try-catch para controlar errores
         try {
-            System.out.println("\t\t\n.:PETICIÓN GET A OpenMeteo:.");
+            System.out.println("\n\t\t.:PETICIÓN GET A OpenMeteo:.");
 
             // Realizamos la petición HTTP con un objeto HttpRequest
             HttpRequest peticion = HttpRequest.newBuilder().uri(URI.create(GET_URL)).GET().build();
@@ -64,7 +64,7 @@ public class API {
     public void ejecutarPost() {
         // Implementamos estructura try-catch para controlar errores de la petición o conexión
         try {
-            System.out.println("\t\t\n.:PETICIÓN POST A JSONPlaceHolder:.");
+            System.out.println("\n\t\t.:PETICIÓN POST A JSONPlaceHolder:.");
 
             // Estructuramos los datos que vamos a mandar al POST en formato JSON (mandamos la temperatura recibida en GET)
             String infoJson = "{\"ciudad\": \"Barcelona\", \"unidad\": \"Celsius\", \"info\": \"" + temperatura + "\"}";
@@ -91,14 +91,14 @@ public class API {
      */
     private void mostrarResultado(HttpResponse<String> respuesta) {
         // Imprimimos el código de estado de la respuesta
-        System.out.println("\tCÓDIGO DE ESTADO: " + respuesta.statusCode());
+        System.out.println("\t.:CÓDIGO DE ESTADO:.\n" + respuesta.statusCode());
 
         // Imprimimos las cabeceras. Por cada clave-valor lo imprimimos por pantalla
-        System.out.println("\t\n.:HEADERS:.");
+        System.out.println("\n\t.:HEADERS:.");
         respuesta.headers().map().forEach((clave, contenido) -> System.out.println("  " + clave + ": " + contenido));
 
         // Imprimimos el contenido JSON que recibimos de la API
-        System.out.println("\t\n.:CONTENIDO::");
+        System.out.println("\n\t.:CONTENIDO:.");
         System.out.println(respuesta.body());
         System.out.println();
 
