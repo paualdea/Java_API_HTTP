@@ -5,7 +5,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class API {
@@ -27,7 +26,7 @@ public class API {
      * Inicializa el cliente HTTP al crear un objeto de esta clase.
      */
     public API () {
-        // Inicializamos el cliente HTTP que usaremos para interactuar con las APIs
+        // Inicializamos el cliente HTTP que usaremos para interactuar con las API
         cliente = HttpClient.newHttpClient();
     }
 
@@ -37,7 +36,7 @@ public class API {
     public void ejecutarGet() {
         // Usamos una estructura try-catch para controlar errores
         try {
-            System.out.println("\t\t\n.:PETICIÓN GET A Open-Meteo:.");
+            System.out.println("\t\t\n.:PETICIÓN GET A OpenMeteo:.");
 
             // Realizamos la petición HTTP con un objeto HttpRequest
             HttpRequest peticion = HttpRequest.newBuilder().uri(URI.create(GET_URL)).GET().build();

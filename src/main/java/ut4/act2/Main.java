@@ -2,9 +2,6 @@ package ut4.act2;
 
 public class Main {
     public static void main(String[] args) {
-        // Variable para almacenar temperatura recibida de la API
-        double temperatura;
-
         // Creamos un objeto de tipo API
         API api = new API();
 
