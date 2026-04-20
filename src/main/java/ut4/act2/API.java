@@ -6,17 +6,21 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class API {
     // Tiempo espera en ms
     private final int TIEMPO_ESPERA = 3500;
 
     // Direcciones URL para el GET y el POST
-    private final String GET_URL = "https://api.open-meteo.com/v1/forecast?latitude=41.38879&longitude=2.15899&current=temperature_2m,wind_speed_10m";
+    private final String GET_URL = "https://api.open-meteo.com/v1/forecast?latitude=41.38879&longitude=2.15899&current=temperature_2m";
     private final String POST_URL = "https://jsonplaceholder.typicode.com/posts";
 
     // Creamos un cliente HTTP para hacer las solicitudes
     private HttpClient cliente;
+
+    // Creamos una variable que almacena la temperatura recibida de la API
+    private double temperatura = 0;
 
     /**
      * Constructor de la clase API.
@@ -40,6 +44,14 @@ public class API {
             // Almacenamos la respuesta de la peticion que mandamos usando el cliente HTTP
             HttpResponse<String> respuesta = cliente.send(peticion, HttpResponse.BodyHandlers.ofString());
 
+            // Guardamos la temperatura recibida en la variable (hecho con una expresión regex por IA)
+            temperatura = Pattern.compile("\"temperature_2m\":([\\d.]+)")
+                    .matcher(respuesta.body())
+                    .results()
+                    .map(match -> Double.parseDouble(match.group(1)))
+                    .findFirst()
+                    .orElse(0.0);
+
             // Una vez ejecutada la petición, enviamos la respuesta a la función mostrarResultado()
             mostrarResultado(respuesta);
         } catch (Exception e) {
@@ -55,8 +67,8 @@ public class API {
         try {
             System.out.println("\t\t\n.:PETICIÓN POST A JSONPlaceHolder:.");
 
-            // Estructuramos los datos que vamos a mandar al POST en formato JSON
-            String infoJson = "{\"ciudad\": \"Barcelona\", \"unidad\": \"Celsius\", \"info\": \"Prueba Actividad 2\"}";
+            // Estructuramos los datos que vamos a mandar al POST en formato JSON (mandamos la temperatura recibida en GET)
+            String infoJson = "{\"ciudad\": \"Barcelona\", \"unidad\": \"Celsius\", \"info\": \"" + temperatura + "\"}";
 
             // Realizamos la petición HTTP con un objeto HttpRequest, adjuntando la información que queremos enviar
             HttpRequest peticion = HttpRequest.newBuilder().uri(URI.create(POST_URL)).header("Content-Type", "application/json").POST(HttpRequest.BodyPublishers.ofString(infoJson)).build();
