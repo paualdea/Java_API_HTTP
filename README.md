@@ -23,7 +23,7 @@ El programa sigue el siguiente flujo de trabajo:
 
 ## Instrucciones de Uso
 
-Para ejecutar este programa, se puede usar el fichero `.jar` o compilar el *código fuente* que se pueden descargar desde las [releases](https://git.paualdea.com/paualdea/Java-API-HTTP/-/releases) del proyecto.
+Para ejecutar este programa, se puede usar el fichero `.jar` o compilar el *código fuente* que se pueden descargar desde las [releases](https://git.paualdea.com/paualdea/Java_API_HTTP/-/releases) del proyecto.
 
 ---
 Este proyecto sirve como evidencia del aprendizaje sobre el desarrollo de aplicaciones distribuidas, el funcionamiento de los protocolos de la capa de aplicación y el consumo de servicios web para la asignatura de **Programación de Servicios y Procesos**.
