@@ -6,7 +6,7 @@
 
     <groupId>ut4.act2</groupId>
     <artifactId>Java_API_HTTP</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
